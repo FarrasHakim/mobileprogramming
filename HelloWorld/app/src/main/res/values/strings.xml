@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HelloWorld</string>
+    <string name="first_app">This is My First Mobile App</string>
+    <string name="img_desc">This is just a normal avatar picture.</string>
+</resources>
