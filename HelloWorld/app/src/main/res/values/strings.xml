@@ -6,4 +6,5 @@
     <string name="send_btn_text">Send</string>
     <string name="message_received_text">Message Received</string>
     <string name="enter_msg_text">Enter Your Message Here</string>
+    <string name="reply_from_second_text">Reply From Second</string>
 </resources>

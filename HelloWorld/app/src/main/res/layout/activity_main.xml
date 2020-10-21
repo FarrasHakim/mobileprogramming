@@ -33,7 +33,7 @@
             app:layout_constraintEnd_toStartOf="@+id/send_button"
             android:hint="@string/enter_msg_text"/>
     <TextView
-            android:text="Reply From Second"
+            android:text="@string/reply_from_second_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/text_header_reply"
             android:textStyle="bold"
