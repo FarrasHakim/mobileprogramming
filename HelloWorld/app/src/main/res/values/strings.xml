@@ -3,4 +3,7 @@
     <string name="first_app">This is My First Mobile App</string>
     <string name="button_text">Click Me</string>
     <string name="img_desc">This is just a normal avatar picture.</string>
+    <string name="send_btn_text">Send</string>
+    <string name="message_received_text">Message Received</string>
+    <string name="enter_msg_text">Enter Your Message Here</string>
 </resources>
