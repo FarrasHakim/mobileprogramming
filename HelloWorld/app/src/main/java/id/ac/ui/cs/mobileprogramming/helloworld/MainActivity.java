@@ -9,9 +9,17 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
     private String mOrderMessage;
+    private final LinkedList<String> mWordList = new LinkedList<>();
+    private RecyclerView mRecyclerView;
+    private WordListAdapter mAdapter;
+
     public static final String EXTRA_MESSAGE =
             "com.example.android.droidcafe.extra.MESSAGE";
 
@@ -22,6 +30,20 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Put initial data into the word list.
+        for (int i = 0; i < 20; i++) {
+            mWordList.addLast("Word " + i);
+        }
+
+        // Get a handle to the RecyclerView.
+        mRecyclerView = findViewById(R.id.recyclerview);
+        // Create an adapter and supply the data to be displayed.
+        mAdapter = new WordListAdapter(this, mWordList);
+        // Connect the adapter with the RecyclerView.
+        mRecyclerView.setAdapter(mAdapter);
+        // Give the RecyclerView a default layout manager.
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Log.d("Test Debugging", "Hello There. Ini On Create");
     }
@@ -74,13 +96,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        if (mOrderMessage != null) {
-            Intent intent = new Intent(MainActivity.this, OrderActivity.class);
-            intent.putExtra(EXTRA_MESSAGE, mOrderMessage);
-            startActivity(intent);
-        } else {
-            displayToast("You have to order something.");
-        }
+        int wordListSize = mWordList.size();
+        // Add a new word to the wordList.
+        mWordList.addLast("+ Word " + wordListSize);
+        // Notify the adapter, that the data has changed.
+        mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
+        // Scroll to the bottom.
+        mRecyclerView.smoothScrollToPosition(wordListSize);
     }
 
     public void displayToast(String message) {
