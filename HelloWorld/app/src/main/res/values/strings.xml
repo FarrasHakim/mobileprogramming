@@ -3,4 +3,8 @@
     <string name="first_app">This is My First Mobile App</string>
     <string name="button_text">Click Me</string>
     <string name="img_desc">This is just a normal avatar picture.</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint_word">Word…</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
 </resources>
