@@ -7,18 +7,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private String mOrderMessage;
-    private final LinkedList<String> mWordList = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private WordListAdapter mAdapter;
+    private WordViewModel mWordViewModel;
+    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
     public static final String EXTRA_MESSAGE =
             "com.example.android.droidcafe.extra.MESSAGE";
@@ -31,19 +36,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Put initial data into the word list.
-        for (int i = 0; i < 20; i++) {
-            mWordList.addLast("Word " + i);
-        }
-
-        // Get a handle to the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerview);
-        // Create an adapter and supply the data to be displayed.
-        mAdapter = new WordListAdapter(this, mWordList);
-        // Connect the adapter with the RecyclerView.
-        mRecyclerView.setAdapter(mAdapter);
-        // Give the RecyclerView a default layout manager.
+        final WordListAdapter adapter = new WordListAdapter(this);
+        mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
+
+        mWordViewModel.getAllWords().observe(this, new Observer<List<Word>>() {
+            @Override
+            public void onChanged(@Nullable final List<Word> words) {
+                // Update the cached copy of the words in the adapter.
+                adapter.setWords(words);
+                mRecyclerView.smoothScrollToPosition(words.size()-1);
+            }
+        });
 
         Log.d("Test Debugging", "Hello There. Ini On Create");
     }
@@ -96,13 +103,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        int wordListSize = mWordList.size();
-        // Add a new word to the wordList.
-        mWordList.addLast("+ Word " + wordListSize);
+        Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
+        startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
         // Notify the adapter, that the data has changed.
-        mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
+//        mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
         // Scroll to the bottom.
-        mRecyclerView.smoothScrollToPosition(wordListSize);
+//        mRecyclerView.smoothScrollToPosition(wordListSize);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
+            mWordViewModel.insert(word);
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    R.string.empty_not_saved,
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     public void displayToast(String message) {
