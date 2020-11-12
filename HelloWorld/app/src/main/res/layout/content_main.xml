@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MainActivity"
+        tools:showIn="@layout/activity_main"
+>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/textintro"
+              android:layout_marginTop="8dp"
+              android:text="@string/intro_text"
+              android:textStyle="bold"
+              android:textSize="24sp"
+              app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:onClick="showDonutOrder"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/donut_circle"
+            android:id="@+id/donut"
+            app:layout_constraintTop_toTopOf="@+id/textintro"
+            android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"
+            android:contentDescription="@string/donut_desc"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:onClick="showIceCreamOrder"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/icecream_circle"
+            android:id="@+id/ice_cream"
+            app:layout_constraintTop_toBottomOf="@+id/donut"
+            android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"
+            android:contentDescription="@string/ics_desc"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:onClick="showFroyoOrder"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/froyo_circle"
+            android:id="@+id/froyo"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/ice_cream" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"
+            android:contentDescription="@string/froyo_desc"/>
+    <TextView
+            android:text="@string/donut_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/donut_description"
+            app:layout_constraintStart_toEndOf="@+id/donut"
+            app:layout_constraintTop_toTopOf="@+id/donut"
+            android:layout_marginTop="24dp" android:layout_marginStart="24dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:onClick="onClick"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_shopping_cart"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="584dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="371dp"/>
+
+    <TextView
+            android:text="@string/ics_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/ice_cream_description"
+            app:layout_constraintStart_toEndOf="@+id/ice_cream" app:layout_constraintTop_toTopOf="@+id/ice_cream"
+            android:layout_marginEnd="24dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+    />
+    <TextView
+            android:text="@string/froyo_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:id="@+id/froyo_description"
+            app:layout_constraintStart_toEndOf="@+id/froyo" app:layout_constraintTop_toTopOf="@+id/froyo"
+            android:layout_marginEnd="24dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="24dp" android:layout_marginTop="24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
