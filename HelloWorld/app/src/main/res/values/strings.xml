@@ -3,4 +3,11 @@
     <string name="first_app">This is My First Mobile App</string>
     <string name="button_text">Click Me</string>
     <string name="img_desc">This is just a normal avatar picture.</string>
+    <string name="intro_text">Droid Desserts</string>
+    <string name="donut_desc">Donuts are glazed and sprinkled with candy.</string>
+    <string name="ics_desc">Ice cream sandwiches have chocolate wafers and vanilla filling.</string>
+    <string name="froyo_desc">FroYo is premium self-serve frozen yogurt.</string>
+    <string name="donut_order_message">You ordered a donut.</string>
+    <string name="ice_cream_order_message">You ordered an ice cream sandwich.</string>
+    <string name="froyo_order_message">You ordered a FroYo.</string>
 </resources>
