@@ -3,4 +3,13 @@
     <string name="first_app">This is My First Mobile App</string>
     <string name="button_text">Click Me</string>
     <string name="img_desc">This is just a normal avatar picture.</string>
+    <string name="edittext_uri">http://developer.android.com</string>
+    <string name="button_uri">Open Website</string>
+
+    <string name="edittext_loc">Golden Gate Bridge</string>
+    <string name="button_loc">Open Location</string>
+
+    <string name="edittext_share">\'Twas brillig and the slithy toves</string>
+    <string name="button_share">Share This Text</string>
+    <string name="share_with_text">\"Share this text with: \"</string>
 </resources>
